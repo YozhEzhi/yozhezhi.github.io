@@ -1,0 +1,428 @@
+// 3D animations without blinking - http://stackoverflow.com/a/10133679:
+@mixin for3d {
+	-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
+	-webkit-perspective: 1000;
+			perspective: 1000;
+}
+
+// CSS PSEUDO TRIAGLES:
+@mixin triagle(
+		$direction : top,
+		$width     : 15px,
+		$color     : red
+	) {
+
+	@if $direction == top {
+		border-color: $color transparent transparent;
+	}
+
+	@if $direction == right {
+		border-color: transparent $color transparent transparent;
+	}
+
+	@if $direction == bottom {
+		border-color: transparent transparent $color;
+	}
+
+	@if $direction == left {
+		border-color: transparent $color transparent transparent;
+	}
+
+	border-style: solid;
+	border-width: $width;
+	content: "";
+	position: absolute;
+}
+
+// COLUMNS:
+@mixin columns($count, $gap, $rule, $color : #E6E6E6) {
+	-webkit-column-count: $count;
+	   -moz-column-count: $count;
+		    column-count: $count;
+	  -webkit-column-gap: $gap;
+	  	 -moz-column-gap: $gap;
+			  column-gap: $gap;
+	 -webkit-column-rule: $rule solid $color;
+	 	-moz-column-rule: $rule solid $color;
+	 		 column-rule: $rule solid $color;
+}
+
+// BREAKPOINTS:
+@mixin bp($key1, $breakpoint, $key2: null, $resolution2: null) {
+	@if nth($key1 $breakpoint $key2 $resolution2, 3) == null {
+		@media only screen and ($key1: $breakpoint) { @content; }
+	}
+
+	@else {
+		@media only screen and ($key1: $breakpoint) and ($key2: $resolution2) { @content; }
+	}
+}
+
+// PSEUDO ELEMENTS:
+@mixin before($left: 0) {
+	content: "";
+	left: $left;
+	position: absolute;
+	top: 0;
+}
+
+@mixin after($right: 0) {
+	content: "";
+	position: absolute;
+	right: $right;
+	top: 0;
+}
+
+// ROWS:
+@mixin rows($n, $margin) {
+	display: inline-block;
+	vertical-align: top;
+	width: ((100% - ($n - 1) * $margin)) / $n;
+
+	&:nth-child(n) {
+		margin-right:  $margin;
+		margin-bottom: $margin * 1.5;
+	}
+
+	&:nth-child(#{$n}n) {
+		margin-right: 0;
+	}
+}
+
+// CLEARFIX:
+// Source: http://nicolasgallagher.com/micro-clearfix-hack/
+//
+// For modern browsers
+// 1. The space content is one way to avoid an Opera bug when the
+//    contenteditable attribute is included anywhere else in the document.
+//    Otherwise it causes space to appear at the top and bottom of elements
+//    that are clearfixed.
+// 2. The use of `table` rather than `block` is only necessary if using
+//    `:before` to contain the top-margins of child elements.
+@mixin clearfix {
+	&:before, &:after {
+		content: " ";   // 1
+		display: table; // 2
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+// FONT-FACE:
+// example: @include fontface("Exo2.0-Thin", "Exo2.0-Thin");
+@mixin fontface($fontName, $fontFile) {
+	@font-face {
+		font-family: "#{$fontName}";
+		src: url("fonts/#{$fontFile}.eot");
+		src: url("fonts/#{$fontFile}.eot?#iefix")       format("embedded-opentype"),
+			 // url("fonts/#{$fontFile}.woff2")            format("woff2"), // new Chrome
+			 url("fonts/#{$fontFile}.svg##{$fontFile}") format("svg"), // legacy iOS
+			 url("fonts/#{$fontFile}.woff")             format("woff"), // standards
+			 url("fonts/#{$fontFile}.ttf")              format("truetype"); // Safari, Android, iOS
+		font-stretch: normal;
+		font-style:   normal;
+		font-weight:  normal;
+	}
+}
+
+// GRADIENTS:
+// Horizontal:
+@mixin grad-left(
+		$startColor : #00B3EE,
+		$endColor   : #7A43B6,
+		$from       : 0%,
+		$to         : 100%
+	) {
+	background-color: $startColor;
+	background-image: -webkit-linear-gradient(left, $startColor $from, $endColor $to);
+	background-image:     linear-gradient(to right, $startColor $from, $endColor $to);
+	background-repeat: repeat-x;
+}
+
+// Horizontal 2-colors:
+@mixin grad-left-2(
+		$startColor : #00B3EE,
+		$endColor   : #C3325F
+	) {
+	background-image: -webkit-linear-gradient(left, $startColor 50%, $endColor 50%);
+	background-image:     linear-gradient(to right, $startColor 50%, $endColor 50%);
+	background-repeat: no-repeat;
+}
+
+// Horizontal 3-colors:
+@mixin grad-left-3(
+		$startColor : #00B3EE,
+		$midColor  : #7A43B6,
+		$colorBreak : 50%,
+		$endColor   : #C3325F
+	) {
+	background-image: -webkit-linear-gradient(left, $startColor, $midColor $colorBreak, $endColor);
+	background-image:     linear-gradient(to right, $startColor, $midColor $colorBreak, $endColor);
+	background-repeat: no-repeat;
+}
+
+// Vertical:
+@mixin grad-top(
+		$startColor : #00B3EE,
+		$endColor   : #7A43B6,
+		$from       : 0%,
+		$to         : 100%,
+		$fallback   : false
+	) {
+	@if $fallback == true { background-color: $startColor; }
+	background-image: -webkit-linear-gradient(top, $startColor $from, $endColor $to);
+	background-image:   linear-gradient(to bottom, $startColor $from, $endColor $to);
+	background-repeat: repeat-y;
+}
+
+// Vertical 2-colors:
+@mixin grad-top-2(
+		$startColor : #00B3EE,
+		$endColor   : #C3325F
+	) {
+	background-image: -webkit-linear-gradient(top, $startColor 50%, $endColor 50%);
+	background-image:   linear-gradient(to bottom, $startColor 50%, $endColor 50%);
+	background-repeat: no-repeat;
+}
+
+// Vertical 3-colors:
+@mixin grad-top-3(
+		$startColor : #00B3EE,
+		$midColor   : #7A43B6,
+		$endColor   : #C3325F,
+		$colorBreak : 50%
+	) {
+	background-image: -webkit-linear-gradient($startColor, $midColor $colorBreak, $endColor);
+	background-image:         linear-gradient($startColor, $midColor $colorBreak, $endColor);
+	background-repeat: no-repeat;
+}
+
+// Directional:
+// ex: @include grad-directional;
+@mixin grad-directional(
+		$deg        : 45deg,
+		$startColor : #00B3EE,
+		$endColor   : #7A43B6
+	) {
+	background-image: -webkit-linear-gradient($deg, $startColor, $endColor);
+	background-image:         linear-gradient($deg, $startColor, $endColor);
+	background-repeat: repeat-x;
+}
+
+// Radial:
+@mixin grad-radial(
+		$inner-color: #00B3EE,
+		$outer-color: #7A43B6
+	) {
+	background-image: -webkit-radial-gradient(circle, $inner-color, $outer-color);
+	background-image:         radial-gradient(circle, $inner-color, $outer-color);
+	background-repeat: no-repeat;
+}
+
+// Striped:
+@mixin grad-strip(
+		$angle : 45deg,
+		$color : rgba(#FFF, 0.15)
+	) {
+	background-image: -webkit-linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
+	background-image:         linear-gradient($angle, $color 25%, transparent 25%, transparent 50%, $color 50%, $color 75%, transparent 75%, transparent);
+}
+
+// A 16:9 ratio would look like this:
+// .element {
+//   @include maintain-ratio(16 9);
+// }
+@mixin maintain-ratio($ratio: 1 1) {
+  @if length($ratio) < 2 or length($ratio) > 2 {
+    @warn "$ratio must be a list with two values.";
+  }
+
+  $height: percentage(nth($ratio, 2) / nth($ratio, 1));
+  $width: 100%;
+
+  height: 0;
+  overflow: hidden;
+  padding-bottom: $height;
+  position: relative;
+  width: $width;
+
+  iframe, embed, object, video {
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+  }
+}
+
+// FLUID WIDTH:
+@function fluid($target, $context) {
+	@return percentage($target / $context);
+}
+
+// FONT-SIZE EM'S:
+@function em($target, $context: 16 ){
+	@return ($target / $context) * 1em;
+}
+
+// FONT-SIZE REM'S:
+@mixin font-size($sizeValue: 12 ){
+	font-size: $sizeValue + px;
+	font-size: (0.125 * $sizeValue) + rem;
+}
+
+// LINE-HEIGHT REM'S:
+@mixin line-height($heightValue: 12 ){
+	line-height: $heightValue + px; //fallback for old browsers
+	line-height: (0.125 * $heightValue) + rem;
+}
+
+// HIDE TEXT:
+@mixin text-hide() {
+	color: transparent;
+	border: 0;
+	font-size: 0;
+	text-shadow: none;
+}
+
+// PLACEHOLDER:
+@mixin placeholder($color: #888) {
+	&:-moz-placeholder            { color: $color; } // Firefox 4-18
+	&::-moz-placeholder           { color: $color; } // Firefox 19+
+	&:-ms-input-placeholder       { color: $color; } // Internet Explorer 10+
+	&::-webkit-input-placeholder  { color: $color; } // Safari and Chrome
+}
+
+// TRANSITIONS:
+@mixin transition($property: all, $time: 0.3s, $method: ease, $delay: 0) {
+	-webkit-transition: $property $time $method $delay;
+			transition: $property $time $method $delay;
+}
+// Transition-transform:
+@mixin transition-transform($transition...) {
+	-webkit-transition: -webkit-transform $transition;
+			transition:         transform $transition;
+}
+
+// TRANSFORMATIONS:
+@mixin rotate($degrees) {
+	-webkit-transform: rotate($degrees);
+		-ms-transform: rotate($degrees); // IE9+
+			transform: rotate($degrees);
+}
+
+@mixin scale($ratio) {
+	-webkit-transform: scale($ratio);
+		-ms-transform: scale($ratio); // IE9+
+			transform: scale($ratio);
+}
+
+@mixin translate($x, $y) {
+	-webkit-transform: translate($x, $y);
+		-ms-transform: translate($x, $y); // IE9+
+			transform: translate($x, $y);
+}
+
+@mixin skew($x, $y) {
+	-webkit-transform: skew($x, $y);
+		-ms-transform: skewX($x) skewY($y); // IE9+
+			transform: skew($x, $y);
+}
+
+@mixin translate3d($x, $y, $z) {
+	-webkit-transform: translate3d($x, $y, $z);
+			transform: translate3d($x, $y, $z);
+}
+
+@mixin rotateX($degrees) {
+	-webkit-transform: rotateX($degrees);
+		-ms-transform: rotateX($degrees); // IE9+
+			transform: rotateX($degrees);
+}
+
+@mixin rotateY($degrees) {
+	-webkit-transform: rotateY($degrees);
+		-ms-transform: rotateY($degrees); // IE9+
+			transform: rotateY($degrees);
+}
+
+@mixin perspective($perspective) {
+	-webkit-perspective: $perspective;
+	   -moz-perspective: $perspective;
+			perspective: $perspective;
+}
+
+@mixin perspective-origin($perspective) {
+	-webkit-perspective-origin: $perspective;
+	   -moz-perspective-origin: $perspective;
+			perspective-origin: $perspective;
+}
+
+@mixin transform-origin($origin) {
+	-webkit-transform-origin: $origin;
+	   -moz-transform-origin: $origin;
+			transform-origin: $origin;
+}
+
+// Animations:
+@mixin animation($name) {
+	-webkit-animation: $name;
+			animation: $name;
+}
+
+// Animation ketframes:
+@mixin keyframes($name) {
+	@-webkit-keyframes $name {
+		@content;
+	}
+	@keyframes $name {
+		@content;
+	}
+}
+
+// User select:
+@mixin user-select($select: none) {
+	-webkit-user-select: $select;
+	   -moz-user-select: $select;
+		-ms-user-select: $select; // IE10+
+			user-select: $select;
+}
+
+// Resize anything
+@mixin resizable($direction) {
+	resize: $direction; // Options: horizontal, vertical, both
+	overflow: auto; // Safari fix
+}
+
+// RETINA IMAGES:
+// @mixin image-2x($image, $width, $height) {
+// 	@media (min--moz-device-pixel-ratio    : 1.3),
+// 		   (-o-min-device-pixel-ratio      : 2.6/2),
+// 		   (-webkit-min-device-pixel-ratio : 1.3),
+// 		   (min-device-pixel-ratio         : 1.3),
+// 		   (min-resolution                 : 1.3dppx) {
+// 		// on retina, use image that's scaled by 2
+// 		background-image: url($image);
+// 		background-size: $width $height;
+// 	}
+// }
+
+// @mixin image-2x($path, $ext: "jpg", $width, $height) {
+@mixin image-2x($path, $ext, $width, $height) {
+	$at1x-path : "#{$image}.#{$ext}";
+	$at2x-path : "#{$image}@2x.#{$ext}";
+
+	background: url("#{$at1x-path}");
+
+	@media (min--moz-device-pixel-ratio    : 1.3),
+		   (-o-min-device-pixel-ratio      : 2.6/2),
+		   (-webkit-min-device-pixel-ratio : 1.3),
+		   (min-device-pixel-ratio         : 1.3),
+		   (min-resolution                 : 1.3dppx) {
+		// on retina, use image that's scaled by 2
+		background-image: url("#{$at2x-path}");
+		background-size: $width $height;
+	}
+}
