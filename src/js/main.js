@@ -35,84 +35,42 @@ $(document).ready(function () {
 /**
  * Slide-In Nav
  **/
-$(window).load(function () {
-  $('.nav_slide_button').click(function () {
-    $('.pull').slideToggle();
-  });
-});
+$('#nav-toggle').click(() => $('.pull').slideToggle());
 
 /** *************** Smooth Scrolling ******************/
-$(function () {
-  $('a[href*=#]:not([href=#])').click(function () {
-    if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
-      let target = $(this.hash);
-
-      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-      if (target.length) {
-        $('html, body').animate({
-          scrollTop: target.offset().top,
-        }, 2000);
-        return false;
-      }
-    }
-  });
+$('a[href*=#]:not([href=#])').click(function () {
+  const target = $(this.hash);
+  if (target.length) {
+    $('html, body').animate({
+      scrollTop: target.offset().top,
+    }, 1000);
+    return false;
+  }
 });
 
 /**
  * Nav Transform icon
  */
-document.querySelector('#nav-toggle').addEventListener('click', function () {
-  this.classList.toggle('active');
-});
+const navToggler = document.querySelector('#nav-toggle');
+navToggler.addEventListener('click', () => navToggler.classList.toggle('active'));
 
 /**
  * Overlays
  */
-$(document).ready(function () {
-  // handle the mouseenter functionality
-  $('.img').mouseenter(function () {
-    $(this).addClass('hover');
-  })
-  // handle the mouseleave functionality
-    .mouseleave(function () {
-      $(this).removeClass('hover');
-    });
-});
+$('.img')
+  .mouseenter(function () { $(this).addClass('hover'); })
+  .mouseleave(function () { $(this).removeClass('hover'); });
 
 /**
  * Flexsliders
  **/
-$(window).load(function () {
-  $('#portfolioSlider').flexslider({
-    animation: 'slide',
-    directionNav: false,
-    controlNav: true,
-    touch: false,
-    pauseOnHover: true,
-    start: function () {
-      $.waypoints('refresh');
-    },
-  });
-
-  $('#servicesSlider').flexslider({
-    animation: 'slide',
-    directionNav: false,
-    controlNav: true,
-    touch: true,
-    pauseOnHover: true,
-    start: function () {
-      $.waypoints('refresh');
-    },
-  });
-
-  $('#teamSlider').flexslider({
-    animation: 'slide',
-    directionNav: false,
-    controlNav: true,
-    touch: true,
-    pauseOnHover: true,
-    start: function () {
-      $.waypoints('refresh');
-    },
-  });
+$('#portfolioSlider').flexslider({
+  animation: 'slide',
+  directionNav: false,
+  controlNav: true,
+  touch: false,
+  pauseOnHover: true,
+  start() {
+    $.waypoints('refresh');
+  },
 });

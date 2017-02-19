@@ -28,6 +28,7 @@
   <meta name="msapplication-config" content="build/img/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
 
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="build/css/styles.min.css">
   <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet'>
 </head>
@@ -44,8 +45,6 @@
               </li>
               <li><a href="#portfolio">Portfolio <span class="indicator"><i class="fa fa-angle-right"></i></span></a>
               </li>
-              <li><a href="#team">People I Admire <span class="indicator"><i class="fa fa-angle-right"></i></span></a>
-              </li>
               <li><a href="#contact">Get in Touch <span class="indicator"><i class="fa fa-angle-right"></i></span></a>
               </li>
             </ul>
@@ -55,31 +54,25 @@
     </div>
   </nav>
   <section class="hero" id="hero">
+    <a class="nav-slide-button" id="nav-toggle" href="#"><span></span></a>
+
     <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-right navicon">
-          <a id="nav-toggle" class="nav_slide_button" href="#"><span></span></a>
-        </div>
+      <div class="row text-center">
+        <h1 class="animated fadeInDown">Yozh<span>Ezhi</span></h1>
+        <p class="animated fadeInUp delay-05s">Front-end developer from Saint P.</p>
       </div>
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2 text-center inner">
-          <h1 class="animated fadeInDown">Yozh<span>Ezhi</span></h1>
-          <p class="animated fadeInUp delay-05s">Front-end developer from Saint P.</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3 text-center">
-          <a href="#portfolio" class="learn-more-btn">Portfolio</a>
-        </div>
+      <div class="row text-center animated fadeIn delay-1s">
+        <a href="#portfolio" class="learn-more-btn">Portfolio</a>
       </div>
     </div>
   </section>
 </header>
+
 <section class="intro text-center section-padding" id="intro">
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 wp1">
-        <h1 class="arrow">Hi everyone!</h1>
+        <h2 class="arrow">Hi everyone!</h2>
         <p>My name is <a href="https://vk.com/yozhezhi" target="_blank">Alexander Zhidovlenko</a>. Duis quis tempor
           nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent id tempor ipsum. Fusce at massa
           ac nunc porta fringilla sed eget neque. Quisque quis pretium nulla. Fusce eget bibendum neque, vel volutpat
@@ -93,7 +86,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1 class="arrow">The things I love</h1>
+        <h2 class="arrow">The things I love</h2>
         <div class="features-wrapper">
           <div class="col-md-4 wp2">
             <div class="icon">
@@ -129,18 +122,8 @@
   </div>
 </section>
 
-<section class="swag text-center">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h2>I got 99 Problems<span>but <em>design</em> 'aint one</span></h2>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="portfolio text-center section-padding" id="portfolio">
-  <h1 class="arrow">Some of my works</h1>
+  <h2 class="arrow">Some of my works</h2>
   <div class="container">
     <div class="row">
       <div id="portfolioSlider">
@@ -148,11 +131,45 @@
           <li>
             <div class="col-md-6 wp4">
               <div class="overlay-effect effects clearfix">
-                <div class="build/img">
+                <div class="img">
+                  <img src="build/img/portfolio-05.jpg" alt="Portfolio Item">
+                  <div class="overlay">
+                    <a href="http://www.stroyprombeton.ru/" class="expand" target="_blank">
+                      <i class="fa fa-search"></i>
+                      <br>Visit site
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <h2><a href="http://www.stroyprombeton.ru/" target="_blank">stroyprombeton.ru</a></h2>
+            </div>
+
+            <div class="col-md-6 wp4 delay-05s">
+              <div class="overlay-effect effects clearfix">
+                <div class="img">
+                  <img src="build/img/portfolio-06.jpg" alt="Portfolio Item">
+                  <div class="overlay">
+                    <a href="https://www.shopelectro.ru/" class="expand" target="_blank">
+                      <i class="fa fa-search"></i>
+                      <br>Visit site
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <h2><a href="https://www.shopelectro.ru/" target="_blank">shopelectro.ru</a></h2>
+            </div>
+          </li>
+
+          <li>
+            <div class="col-md-6 wp4">
+              <div class="overlay-effect effects clearfix">
+                <div class="img">
                   <img src="build/img/portfolio-01.jpg" alt="Portfolio Item">
                   <div class="overlay">
-                    <a href="http://tvoirecepty.ru/" class="expand" target="_blank"><i class="fa fa-search"></i><br>Visit
-                      site</a>
+                    <a href="http://tvoirecepty.ru/" class="expand" target="_blank">
+                      <i class="fa fa-search"></i>
+                      <br>Visit site
+                    </a>
                   </div>
                 </div>
               </div>
@@ -161,11 +178,13 @@
 
             <div class="col-md-6 wp4 delay-05s">
               <div class="overlay-effect effects clearfix">
-                <div class="build/img">
+                <div class="img">
                   <img src="build/img/portfolio-02.jpg" alt="Portfolio Item">
                   <div class="overlay">
-                    <a href="http://softobase.com/ru" class="expand" target="_blank"><i class="fa fa-search"></i><br>Visit
-                      site</a>
+                    <a href="http://softobase.com/ru" class="expand" target="_blank">
+                      <i class="fa fa-search"></i>
+                      <br>Visit site
+                    </a>
                   </div>
                 </div>
               </div>
@@ -176,10 +195,13 @@
           <li>
             <div class="col-md-6 wp4">
               <div class="overlay-effect effects clearfix">
-                <div class="build/img">
+                <div class="img">
                   <img src="build/img/portfolio-03.jpg" alt="Portfolio Item">
                   <div class="overlay">
-                    <a href="#" class="expand" target="_blank"><i class="fa fa-search"></i><br>Visit site</a>
+                    <a href="#" class="expand" target="_blank">
+                      <i class="fa fa-search"></i>
+                      <br>Visit site
+                    </a>
                   </div>
                 </div>
               </div>
@@ -188,43 +210,17 @@
 
             <div class="col-md-6 wp4 delay-05s">
               <div class="overlay-effect effects clearfix">
-                <div class="build/img">
+                <div class="img">
                   <img src="build/img/portfolio-04.jpg" alt="Portfolio Item">
                   <div class="overlay">
-                    <a href="http://avto-start-servis.ru/" class="expand" target="_blank"><i
-                      class="fa fa-search"></i><br>Visit site</a>
+                    <a href="http://avto-start-servis.ru/" class="expand" target="_blank">
+                      <i class="fa fa-search"></i>
+                      <br>Visit site
+                    </a>
                   </div>
                 </div>
               </div>
               <h2><a href="http://avto-start-servis.ru/" target="_blank">avto-start-servis.ru</a></h2>
-            </div>
-          </li>
-
-          <li>
-            <div class="col-md-6 wp4">
-              <div class="overlay-effect effects clearfix">
-                <div class="build/img">
-                  <img src="build/img/portfolio-05.jpg" alt="Portfolio Item">
-                  <div class="overlay">
-                    <a href="http://pixp.ru/" class="expand" target="_blank"><i class="fa fa-search"></i><br>Visit site</a>
-                  </div>
-                </div>
-              </div>
-              <h2><a href="http://pixp.ru/" target="_blank">pixp.ru</a></h2>
-            </div>
-
-            <div class="col-md-6 wp4 delay-05s">
-              <div class="overlay-effect effects clearfix">
-                <div class="build/img">
-                  <img src="build/img/portfolio-06.jpg" alt="Portfolio Item">
-                  <div class="overlay">
-                    <a href="http://decowed.ru" class="expand" target="_blank"><i class="fa fa-search"></i><br>Visit
-                      site</a>
-                    <a class="close-overlay hidden">x</a>
-                  </div>
-                </div>
-              </div>
-              <h2><a href="http://decowed.ru/" target="_blank">decowed.ru</a></h2>
             </div>
           </li>
         </ul>
@@ -235,109 +231,8 @@
 
 <section class="subscribe text-center">
   <div class="container">
-    <h1><i class="fa fa-paper-plane"></i><span>Have you something to say?</span></h1>
+    <h2><i class="fa fa-paper-plane"></i><span>Have you something to say?</span></h2>
     <a href="mailto:yozhezhi@gmail.com" class="ignite-btn">Mail me</a>
-  </div>
-</section>
-
-<section class="team text-center section-padding" id="team">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h1 class="arrow">People I Admire</h1>
-      </div>
-    </div>
-    <div class="row">
-      <div class="team-wrapper">
-        <div id="teamSlider">
-          <ul class="slides">
-            <li>
-              <div class="col-md-4 wp5">
-                <img src="build/img/team-01.png" alt="Team Member">
-                <h2>Chris Coyier</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non metus pulvinar
-                  imperdiet. Praesent non adipiscing libero.</p>
-                <div class="social">
-                  <ul class="social-buttons">
-                    <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
-                    <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="col-md-4 wp5 delay-05s">
-                <img src="build/img/team-02.png" alt="Team Member">
-                <h2>Cersei Lannister</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non metus pulvinar
-                  imperdiet. Praesent non adipiscing libero.</p>
-                <div class="social">
-                  <ul class="social-buttons">
-                    <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
-                    <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4 wp5 delay-1s">
-                <img src="build/img/team-03.png" alt="Team Member">
-                <h2>Jamie Lannister</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non metus pulvinar
-                  imperdiet. Praesent non adipiscing libero.</p>
-                <div class="social">
-                  <ul class="social-buttons">
-                    <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
-                    <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div class="col-md-4 wp5">
-                <img src="build/img/team-01.png" alt="Team Member">
-                <h2>Jon Snow</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non metus pulvinar
-                  imperdiet. Praesent non adipiscing libero.</p>
-                <div class="social">
-                  <ul class="social-buttons">
-                    <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
-                    <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4 wp5 delay-05s">
-                <img src="build/img/team-02.png" alt="Team Member">
-                <h2>Cersei Lannister</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non metus pulvinar
-                  imperdiet. Praesent non adipiscing libero.</p>
-                <div class="social">
-                  <ul class="social-buttons">
-                    <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
-                    <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-4 wp5 delay-1s">
-                <img src="build/img/team-03.png" alt="Team Member">
-                <h2>Jamie Lannister</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ultricies nulla non metus pulvinar
-                  imperdiet. Praesent non adipiscing libero.</p>
-                <div class="social">
-                  <ul class="social-buttons">
-                    <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
-                    <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -346,48 +241,34 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1 class="arrow">Contacts</h1>
+        <h2 class="arrow">Contacts</h2>
       </div>
     </div>
+
     <div class="row contact-details">
-      <div class="col-md-4">
+      <div class="col-md-4 col-md-offset-2">
         <div class="light-box box-hover">
-          <h2><i class="fa fa-map-marker"></i><span>Address</span></h2>
-          <p>Build 13, 22 October Revolution Ave, Sevastopol</p>
+          <h3 class="contact-details-title"><i class="fa fa-mobile"></i><span>Phone</span></h3>
+          <p>+7 931 33 72 414</p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="light-box box-hover">
-          <h2><i class="fa fa-mobile"></i><span>Phone</span></h2>
-          <p>+7 978 78 18 233</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="light-box box-hover">
-          <h2><i class="fa fa-paper-plane"></i><span>Email</span></h2>
+          <h3 class="contact-details-title"><i class="fa fa-paper-plane"></i><span>Email</span></h3>
           <p><a href="mailto:yozhezhi@gmail.com">yozhezhi@gmail.com</a></p>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <ul class="social-buttons">
-          <li><a href="#" class="social-btn"><i class="fa fa-dribbble"></i></a></li>
-          <li><a href="#" class="social-btn"><i class="fa fa-twitter"></i></a></li>
-          <li><a href="#" class="social-btn"><i class="fa fa-envelope"></i></a></li>
-        </ul>
-      </div>
-    </div>
+
+    <ul class="social-buttons">
+      <li><a href="https://github.com/YozhEzhi" class="social-btn"><i class="fa fa-github"></i></a></li>
+      <li><a href="https://vk.com/yozhezhi" class="social-btn"><i class="fa fa-vk"></i></a></li>
+    </ul>
   </div>
 </section>
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 col-md-offset-6 credit">
-        <p>Designed &amp; by <a href="http://www.peterfinlan.com/" target="_blank">Peter Finlan</a></p>
-      </div>
-    </div>
-  </div>
+
+<footer class="footer text-center">
+  <p>Designed &amp; by <a href="http://www.peterfinlan.com/" target="_blank">Peter Finlan</a></p>
 </footer>
 
 <script src="build/js/vendors.min.js"></script>

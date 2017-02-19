@@ -24,7 +24,6 @@ const path = {
       ],
       main: [
         'src/js/main.js',
-        'src/js/overlay.js',
       ],
     },
     images: 'src/img/**/*',
