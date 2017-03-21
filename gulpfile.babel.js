@@ -1,6 +1,3 @@
-// ================================================================
-// IMPORTS
-// ================================================================
 import gulp from 'gulp';
 import del from 'del';
 import sequence from 'run-sequence';
@@ -28,6 +25,7 @@ const path = {
     },
     images: 'src/img/**/*',
     fonts: 'src/fonts/**/*',
+    html: '*.html',
   },
 
   build: {
@@ -35,6 +33,7 @@ const path = {
     js: `${buildDir}/js/`,
     images: `${buildDir}/img/`,
     fonts: `${buildDir}/fonts/`,
+    html: `${buildDir}`,
   },
 
   watch: {
@@ -51,12 +50,14 @@ const path = {
 // ================================================================
 gulp.task('build', () => {
   sequence(
-    'clear',
-    'fonts',
-    'images',
-    'js-vendors',
-    'js',
-    'styles',
+    'clear', [
+      'fonts',
+      'images',
+      'html',
+      'js-vendors',
+      'js',
+      'styles',
+    ],
   );
 });
 
@@ -116,21 +117,42 @@ gulp.task('js-vendors', () => {
 });
 
 // ================================================================
-// Images : Copy images
+// Images
 // ================================================================
 gulp.task('images', () => {
   gulp.src(path.src.images)
     .pipe($.changed(path.build.images))
+    .pipe($.imagemin())
     .pipe(gulp.dest(path.build.images));
 });
 
 // ================================================================
-// Fonts : Copy fonts
+// Fonts
 // ================================================================
 gulp.task('fonts', () => {
   gulp.src(path.src.fonts)
     .pipe($.changed(path.build.fonts))
     .pipe(gulp.dest(path.build.fonts));
+});
+
+// ================================================================
+// Html
+// ================================================================
+gulp.task('html', () => {
+  gulp.src(path.src.html)
+    .pipe($.changed(path.build.html))
+    .pipe(gulp.dest(path.build.html))
+    .pipe($.livereload());
+});
+
+// ================================================================
+// Server simulation
+// ================================================================
+gulp.task('connect', () => {
+  $.connect.server({
+    root: 'build',
+    livereload: true,
+  });
 });
 
 // ================================================================
@@ -140,10 +162,10 @@ gulp.task('watch', () => {
   $.livereload.listen();
   gulp.watch(path.watch.js, ['js']);
   gulp.watch(path.watch.styles, ['styles']);
-  gulp.watch(path.watch.html, $.livereload.changed);
+  gulp.watch(path.watch.html, ['html']);
 });
 
 // ================================================================
 // DEFAULT
 // ================================================================
-gulp.task('default', ['watch']);
+gulp.task('default', ['watch', 'connect']);
