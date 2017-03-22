@@ -1,15 +1,12 @@
-import gulp from 'gulp';
-import del from 'del';
-import sequence from 'run-sequence';
 import babelPreset from 'babel-preset-es2015';
+import gulp from 'gulp';
+import sequence from 'run-sequence';
 
 const $ = require('gulp-load-plugins')();
 
 // ================================================================
 // CONSTS
 // ================================================================
-const buildDir = 'build';
-
 const path = {
   src: {
     styles: 'src/sass/styles.scss',
@@ -23,24 +20,18 @@ const path = {
         'src/js/main.js',
       ],
     },
-    images: 'src/img/**/*',
-    fonts: 'src/fonts/**/*',
-    html: '*.html',
+    images: './img/**/*',
   },
 
   build: {
-    styles: `${buildDir}/css/`,
-    js: `${buildDir}/js/`,
-    images: `${buildDir}/img/`,
-    fonts: `${buildDir}/fonts/`,
-    html: `${buildDir}`,
+    styles: './css/',
+    js: './js/',
+    images: './img/',
   },
 
   watch: {
     styles: 'src/sass/**/*',
     js: 'src/js/**/*',
-    images: 'src/img/**/*',
-    fonts: 'src/fonts/**/*',
     html: 'index.html',
   },
 };
@@ -50,21 +41,14 @@ const path = {
 // ================================================================
 gulp.task('build', () => {
   sequence(
-    'clear', [
-      'fonts',
+    [
       'images',
-      'html',
       'js-vendors',
       'js',
       'styles',
     ],
   );
 });
-
-// ================================================================
-// Clear : Clear destination dir before build.
-// ================================================================
-gulp.task('clear', () => del(`${buildDir}/**/*`));
 
 // ================================================================
 // STYLES : Build common stylesheets
@@ -127,30 +111,11 @@ gulp.task('images', () => {
 });
 
 // ================================================================
-// Fonts
-// ================================================================
-gulp.task('fonts', () => {
-  gulp.src(path.src.fonts)
-    .pipe($.changed(path.build.fonts))
-    .pipe(gulp.dest(path.build.fonts));
-});
-
-// ================================================================
-// Html
-// ================================================================
-gulp.task('html', () => {
-  gulp.src(path.src.html)
-    .pipe($.changed(path.build.html))
-    .pipe(gulp.dest(path.build.html))
-    .pipe($.livereload());
-});
-
-// ================================================================
 // Server simulation
 // ================================================================
 gulp.task('connect', () => {
   $.connect.server({
-    root: 'build',
+    root: '.',
     livereload: true,
   });
 });
@@ -162,7 +127,7 @@ gulp.task('watch', () => {
   $.livereload.listen();
   gulp.watch(path.watch.js, ['js']);
   gulp.watch(path.watch.styles, ['styles']);
-  gulp.watch(path.watch.html, ['html']);
+  gulp.watch(path.watch.html, $.livereload());
 });
 
 // ================================================================
