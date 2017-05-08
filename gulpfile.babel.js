@@ -77,10 +77,7 @@ gulp.task('js', () => {
     .pipe($.sourcemaps.init())
     .pipe($.plumber())
     .pipe($.concat('main.js'))
-    .pipe($.babel({
-      presets: [babelPreset],
-      compact: false,
-    }))
+    .pipe($.babel())
     .pipe($.rename({ suffix: '.min' }))
     .pipe($.uglify())
     .pipe($.sourcemaps.write('.'))
